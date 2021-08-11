@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EasyNetQ" Version="6.3.1" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
+		<PackageReference Include="Ocelot" Version="17.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Shared.Contracts\Shared.Contracts.csproj" />
+		<ProjectReference Include="..\StoryMicroservice.DataAccess\StoryMicroservice.DataAccess.csproj" />
+		<ProjectReference Include="..\StoryMicroservice.Model\StoryMicroservice.Core.csproj" />
+	</ItemGroup>
+</Project>

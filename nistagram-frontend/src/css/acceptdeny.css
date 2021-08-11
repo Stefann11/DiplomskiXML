@@ -1,0 +1,22 @@
+.accept {
+  color: #fff;
+  background: #44cc44;
+  padding: 15px 20px;
+  border: none;
+}
+.accept:hover {
+  background: #6fe76f;
+  box-shadow: 0 4px 0 0 #7ed37e;
+  border: none;
+}
+.deny {
+  color: #fff;
+  background: tomato;
+  padding: 15px 20px;
+  border: none;
+}
+.deny:hover {
+  background: rgb(255, 147, 128);
+  box-shadow: 0 4px 0 0 #ef8282;
+  border: none;
+}

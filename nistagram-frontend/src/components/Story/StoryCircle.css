@@ -1,0 +1,41 @@
+.story-circle {
+  border-radius: 50%;
+  height: 52px;
+  width: 52px;
+  border: 2px solid white;
+  margin: 2px;
+}
+
+.story-circle::after {
+  content: "\00a0";
+  background: linear-gradient(to bottom, #d82b7e, #f57939);
+  border-radius: 50%;
+  position: sticky;
+  display: block;
+  width: 59px;
+  height: 59px;
+  margin-top: -4px;
+  margin-left: -4px;
+  z-index: -2;
+}
+
+.story-wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-columns: 50px;
+  grid-auto-flow: column dense;
+  overflow: auto;
+  text-align: center;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.story-modal-backdrop {
+  opacity: 1 !important;
+  background-color: #323232;
+}
+
+.story-modal-body {
+  padding: 0px;
+}
