@@ -91,7 +91,8 @@ namespace NotificationMicroservice.Api
             services.AddAuthorization();
 
             services.AddDbContextPool<AppDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("notificationdb")).UseLazyLoadingProxies());
+                options => options.UseSqlServer(Configuration.GetConnectionString("notificationdb"))
+                .UseLazyLoadingProxies());
 
             services.AddHostedService<Worker>();
         }

@@ -40,9 +40,13 @@ namespace PostMicroservice.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById([FromRoute] Guid id)
         {
             Post post = _postRepository.GetById(id).Value;
+            if (post is null)
+            {
+                return BadRequest();
+            }
             if (post.GetType().Name.Equals("PostSingle"))
             {
                 return Ok(postSingleFactory.Create((PostSingle)post));
@@ -51,13 +55,16 @@ namespace PostMicroservice.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search([FromQuery] Guid userId, [FromQuery] string hashTag, [FromQuery] string country,
-            [FromQuery] string city, [FromQuery] string street, [FromQuery] string access)
+        public IActionResult Search([FromQuery] Guid userId, [FromQuery] string hashTag,
+            [FromQuery] string country, [FromQuery] string city, [FromQuery] string street,
+            [FromQuery] string access)
         {
             if (Request.Query.Count == 0) return BadRequest();
-            if (userId == Guid.Empty && String.IsNullOrWhiteSpace(hashTag) && String.IsNullOrEmpty(access)) return BadRequest();
+            if (userId == Guid.Empty && String.IsNullOrWhiteSpace(hashTag)
+                && String.IsNullOrEmpty(access)) return BadRequest();
             List<DTOs.Post> posts = new List<DTOs.Post>();
-            List<Post> allPosts = _postRepository.GetBy(userId, hashTag, country, city, street, access).ToList();
+            List<Post> allPosts = _postRepository.GetBy(userId, hashTag, country, city,
+                street, access).ToList();
             foreach (Post post in allPosts)
             {
                 if (post.GetType().Name.Equals("PostSingle"))
@@ -280,7 +287,7 @@ namespace PostMicroservice.Api.Controllers
 
         [HttpPut("{id}/ban")]
         [Authorize(Roles = "Admin")]
-        public IActionResult BanPost(Guid id)
+        public IActionResult BanPost([FromRoute] Guid id)
         {
             _postRepository.BanPost(id);
             return Ok();

@@ -304,7 +304,7 @@ namespace UserMicroservice.Api.Controllers
 
         [HttpPut("{id}/ban")]
         [Authorize(Roles = "Admin")]
-        public IActionResult BanUser(Guid id)
+        public IActionResult BanUser([FromRoute] Guid id)
         {
             _userRepository.BanUser(id);
             return Ok();

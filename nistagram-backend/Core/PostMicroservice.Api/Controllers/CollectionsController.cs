@@ -33,14 +33,13 @@ namespace PostMicroservice.Api.Controllers
 
         [HttpPost]
         [Authorize(Roles = "RegisteredUser, Agent, VerifiedUser")]
-        public IActionResult Save(DTOs.Collection collection)
+        public IActionResult Save([FromBody] DTOs.Collection collection)
         {
             Result<CollectionName> collectionName = CollectionName.Create(collection.CollectionName);
-            Result result = Result.Combine(collectionName);
-            RegisteredUser registeredUser = _userRepository.GetById(collection.RegisteredUser.Id).Value;
             Guid id = Guid.NewGuid();
             if (_collectionRepository.Save(Collection.Create(id, collectionName.Value,
-                   new List<Post>(), registeredUser).Value) == null) return BadRequest();
+                new List<Post>(), _userRepository.GetById(collection.RegisteredUser.Id).Value)
+                .Value) == null) return BadRequest();
             collection.Id = id;
             return Ok(collection);
         }

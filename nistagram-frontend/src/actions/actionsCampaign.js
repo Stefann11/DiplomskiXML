@@ -273,7 +273,7 @@ export const deleteCampaign = (item) => async (dispatch) => {
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          Authorization: "Bearer " + sessionStorage.getItem("tokenAgentApp"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
         data: item,
       }
